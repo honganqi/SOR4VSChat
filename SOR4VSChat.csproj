@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{515EA693-4B30-4A90-BBD9-77C39E04D34F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SOR4VSChat</RootNamespace>
+    <AssemblyName>SOR4VSChat</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>none</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>none</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logovschat.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AsyncAwaitBestPractices, Version=1.0.0.0, Culture=neutral, PublicKeyToken=532360cfd341384d, processorArchitecture=MSIL">
+      <HintPath>packages\AsyncAwaitBestPractices.6.0.0\lib\netstandard1.0\AsyncAwaitBestPractices.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="SOR4VSChatLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SOR4VSChatLib\bin\Release\SOR4VSChatLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="panels\ChatLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="panels\ChatLog.Designer.cs">
+      <DependentUpon>ChatLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="panels\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="panels\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="panels\BotCredentialsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="panels\BotCredentialsForm.Designer.cs">
+      <DependentUpon>BotCredentialsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="panels\subpanels\PanelCharacters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="panels\subpanels\PanelCharacters.Designer.cs">
+      <DependentUpon>PanelCharacters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="panels\subpanels\PanelGravity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="panels\subpanels\PanelGravity.Designer.cs">
+      <DependentUpon>PanelGravity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="panels\subpanels\PanelHealth.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="panels\subpanels\PanelHealth.Designer.cs">
+      <DependentUpon>PanelHealth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="panels\subpanels\PanelSize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="panels\subpanels\PanelSize.Designer.cs">
+      <DependentUpon>PanelSize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="panels\subpanels\PanelSpawns.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="panels\subpanels\PanelSpawns.Designer.cs">
+      <DependentUpon>PanelSpawns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="panels\subpanels\PanelSpeed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="panels\subpanels\PanelSpeed.Designer.cs">
+      <DependentUpon>PanelSpeed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="panels\subpanels\PanelLives.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="panels\subpanels\PanelLives.Designer.cs">
+      <DependentUpon>PanelLives.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SOR4Bot.cs" />
+    <Compile Include="TwitchBot.cs" />
+    <Compile Include="MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="panels\ChatLog.resx">
+      <DependentUpon>ChatLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="panels\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="panels\BotCredentialsForm.resx">
+      <DependentUpon>BotCredentialsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="panels\subpanels\PanelCharacters.resx">
+      <DependentUpon>PanelCharacters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="panels\subpanels\PanelGravity.resx">
+      <DependentUpon>PanelGravity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="panels\subpanels\PanelHealth.resx">
+      <DependentUpon>PanelHealth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="panels\subpanels\PanelSize.resx">
+      <DependentUpon>PanelSize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="panels\subpanels\PanelSpawns.resx">
+      <DependentUpon>PanelSpawns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="panels\subpanels\PanelSpeed.resx">
+      <DependentUpon>PanelSpeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="panels\subpanels\PanelLives.resx">
+      <DependentUpon>PanelLives.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.manifest" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SOR4VSChatLib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <EmbeddedResource Include="img\bmc.png" />
+    <EmbeddedResource Include="img\exit.png" />
+    <EmbeddedResource Include="img\help.png" />
+    <EmbeddedResource Include="img\min.png" />
+    <EmbeddedResource Include="img\sflogo.png" />
+    <EmbeddedResource Include="img\twitch.png" />
+    <EmbeddedResource Include="img\youtube.png" />
+    <EmbeddedResource Include="img\settings.png" />
+    <EmbeddedResource Include="img\gravity.png" />
+    <EmbeddedResource Include="img\size.png" />
+    <EmbeddedResource Include="img\speed.png" />
+    <EmbeddedResource Include="img\lives.png" />
+    <EmbeddedResource Include="img\save.png" />
+    <EmbeddedResource Include="img\health.png" />
+    <EmbeddedResource Include="img\character.png" />
+    <EmbeddedResource Include="img\settings_sm.png" />
+    <Content Include="logovschat.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
