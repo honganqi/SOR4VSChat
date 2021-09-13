@@ -63,7 +63,6 @@ namespace SOR4VSChat
             ["randomchar"] = new CommandObject { Category = "character", Command = "random" },
             ["mixitup"] = new CommandObject { Category = "moves", Command = "random" },
             ["char"] = new CommandObject { Category = "character", Parameters = true },
-            ["z"] = new CommandObject { Category = "spawner", ChangeValue = 1 }
         };
 
         public static Dictionary<int, SOR4VSChatLib.CharacterSpeed> characters = new Dictionary<int, SOR4VSChatLib.CharacterSpeed>

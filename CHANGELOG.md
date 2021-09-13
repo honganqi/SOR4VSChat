@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in
 this file.
 
+## 1.2 - 2021/09/14 05:17 GMT+08:00
+### Fixed
+* fixed the issue where the app crashes when the `!vs` or
+`!vschat` commands are used to show the list of enabled commands
+
+
 ## 1.1 - 2021/09/12 20:06 GMT+08:00
 ### Added
 * added textbox for bot response when `!mixitup` is used

@@ -577,6 +577,7 @@ namespace SOR4VSChat
                             // else this is going to be the command itself
                             if (result[0] != "disabled")
                             {
+
                                 if (previousItem != "" && previousItem != SOR4Bot.botCommandsList[actualcommand].Category) commandpair[1] += "|| ";
                                 commandpair[1] += "!" + result[0] + " ";
                                 // if either a reset or a random
