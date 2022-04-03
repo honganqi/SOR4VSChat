@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in
 this file.
 
+## 1.3 - 2022/04/04 01:52 GMT+08:00
+### Added
+* Added a button which appears if an update is available.
+Clicking on it will bring you to the download page. This button
+will show you what the latest version is if it is newer than
+the one you're currently using.
+### Fixed
+* VS Chat now works with `v07s-r13648` (December 2021 update)
+### Removed
+* Made it so that only the EXE file is needed to run
+VS Chat; no more DLL files
+
 ## 1.2 - 2021/09/14 05:17 GMT+08:00
 ### Fixed
 * fixed the issue where the app crashes when the `!vs` or

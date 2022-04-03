@@ -31,8 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.activePanel = new System.Windows.Forms.Panel();
             this.panelTop = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.labelAuthor = new System.Windows.Forms.Label();
+            this.labelVerNum = new System.Windows.Forms.Label();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.labelTitle = new System.Windows.Forms.Label();
@@ -50,6 +49,7 @@
             this.imgYoutube = new System.Windows.Forms.PictureBox();
             this.imgBMCSupport = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnUpdateNotif = new System.Windows.Forms.Button();
             this.panelTop.SuspendLayout();
             this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgSF)).BeginInit();
@@ -72,8 +72,7 @@
             // panelTop
             // 
             this.panelTop.BackColor = System.Drawing.Color.DimGray;
-            this.panelTop.Controls.Add(this.label2);
-            this.panelTop.Controls.Add(this.labelAuthor);
+            this.panelTop.Controls.Add(this.labelVerNum);
             this.panelTop.Controls.Add(this.btnMinimize);
             this.panelTop.Controls.Add(this.btnClose);
             this.panelTop.Controls.Add(this.labelTitle);
@@ -85,29 +84,16 @@
             this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTop_MouseDown);
             this.panelTop.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTop_MouseMove);
             // 
-            // label2
+            // labelVerNum
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(128, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 13);
-            this.label2.TabIndex = 44;
-            this.label2.Text = "v1.1";
-            // 
-            // labelAuthor
-            // 
-            this.labelAuthor.AutoSize = true;
-            this.labelAuthor.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAuthor.ForeColor = System.Drawing.Color.White;
-            this.labelAuthor.Location = new System.Drawing.Point(161, 13);
-            this.labelAuthor.Name = "labelAuthor";
-            this.labelAuthor.Size = new System.Drawing.Size(73, 13);
-            this.labelAuthor.TabIndex = 43;
-            this.labelAuthor.Text = "by honganqi";
-            this.labelAuthor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.labelAuthor_MouseDown);
-            this.labelAuthor.MouseMove += new System.Windows.Forms.MouseEventHandler(this.labelAuthor_MouseMove);
+            this.labelVerNum.AutoSize = true;
+            this.labelVerNum.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelVerNum.ForeColor = System.Drawing.Color.White;
+            this.labelVerNum.Location = new System.Drawing.Point(128, 13);
+            this.labelVerNum.Name = "labelVerNum";
+            this.labelVerNum.Size = new System.Drawing.Size(27, 13);
+            this.labelVerNum.TabIndex = 44;
+            this.labelVerNum.Text = "v1.2";
             // 
             // btnMinimize
             // 
@@ -355,6 +341,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnUpdateNotif);
             this.panel1.Controls.Add(this.imgBMCSupport);
             this.panel1.Controls.Add(this.imgSF);
             this.panel1.Controls.Add(this.imgYoutube);
@@ -365,6 +352,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(614, 78);
             this.panel1.TabIndex = 79;
+            // 
+            // btnUpdateNotif
+            // 
+            this.btnUpdateNotif.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnUpdateNotif.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateNotif.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateNotif.Location = new System.Drawing.Point(227, 15);
+            this.btnUpdateNotif.Name = "btnUpdateNotif";
+            this.btnUpdateNotif.Size = new System.Drawing.Size(160, 43);
+            this.btnUpdateNotif.TabIndex = 82;
+            this.btnUpdateNotif.Text = "vx.x is now available!\r\nGET IT NOW!";
+            this.btnUpdateNotif.UseVisualStyleBackColor = false;
+            this.btnUpdateNotif.Visible = false;
             // 
             // MainWindow
             // 
@@ -400,7 +400,6 @@
         #endregion
         private System.Windows.Forms.Panel activePanel;
         private System.Windows.Forms.Panel panelTop;
-        private System.Windows.Forms.Label labelAuthor;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label labelTitle;
@@ -418,7 +417,8 @@
         private System.Windows.Forms.Button btnHealthPanel;
         private System.Windows.Forms.Button btnCharPanel;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelVerNum;
+        public System.Windows.Forms.Button btnUpdateNotif;
     }
 }
 

@@ -12,6 +12,8 @@ using System.Windows.Forms;
 using AsyncAwaitBestPractices;
 using System.IO;
 using System.Reflection;
+using System.Net.Http;
+using System.Globalization;
 
 namespace SOR4VSChat
 {
@@ -29,6 +31,10 @@ namespace SOR4VSChat
         public BotCredentialsForm botCredentialsForm;
         public MainForm mainform;
         public SOR4VSChatLib sor4vschatlib;
+
+        public bool updateAvailable = false;
+        string updateurl = "https://raw.githubusercontent.com/honganqi/SOR4VSChat/main/latest.json";
+        string downloadURL = "";
 
         List<string> messageList = new List<string>();
         public panels.ChatLog chatWindow;
@@ -69,6 +75,12 @@ namespace SOR4VSChat
             panelLeft.BackColor = Color.FromArgb(33, 33, 33);
             btnMinimize.BackColor = Color.FromArgb(33, 33, 33);
             btnClose.BackColor = Color.FromArgb(33, 33, 33);
+
+            string currentVerString = Application.ProductVersion;
+            List<string> currentVersionSplit = currentVerString.Split('.').ToList();
+            if (currentVersionSplit[3] == "0") currentVersionSplit.RemoveAt(3);
+            if (currentVersionSplit[2] == "0") currentVersionSplit.RemoveAt(2);
+            labelVerNum.Text = "v" + string.Join(".", currentVersionSplit) + " by honganqi";
 
             Stream thumbStream = imageAssembly.GetManifestResourceStream("SOR4VSChat.img.bmc.png");
             Bitmap thumbBitmap = new Bitmap(thumbStream);
@@ -134,12 +146,95 @@ namespace SOR4VSChat
             thumbBitmap = new Bitmap(thumbStream);
             btnCharPanel.BackgroundImage = thumbBitmap;
 
+            CheckUpdate(updateurl);
+
             SwitchPanel("main");
             mainform.SwitchPanel("lives");
             CheckSettings();
             ReadAllSettings();
             ClearBotReplies();
         }
+
+        public async void CheckUpdate(string url)
+        {
+            List<string> onlineVer = new();
+            List<string> currentVer = new();
+            var client = new HttpClient();
+            var request = client.GetAsync(url);
+
+            Task timeout = Task.Delay(3000);
+            await Task.WhenAny(timeout, request);
+
+            try
+            {
+                HttpResponseMessage response = request.Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var page = response.Content.ReadAsStringAsync();
+                    var queryResult = Newtonsoft.Json.JsonConvert.DeserializeObject<SOR4Bot.VersionClass>(page.Result);
+
+                    if ((queryResult != null) && (queryResult.ReleaseDate != null))
+                    {
+                        DateTime releaseDate = DateTime.Parse(queryResult.ReleaseDate).ToUniversalTime();
+                        string onlineVerString = queryResult.Version;
+                        string currentVerString = Application.ProductVersion;
+                        downloadURL = queryResult.DownloadURL;
+                        if (onlineVerString.CompareTo(currentVerString) > 0)
+                        {
+                            List<string> versionSplit = onlineVerString.Split('.').ToList();
+                            if (versionSplit[3] == "0") versionSplit.RemoveAt(3);
+                            if (versionSplit[2] == "0") versionSplit.RemoveAt(2);
+                            onlineVer.Add(string.Join(".", versionSplit));
+                            onlineVer.Add(releaseDate.ToLocalTime().ToString(CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern));
+                            btnUpdateNotif.Text = "v" + onlineVer[0] + " is now available!\nGET IT NOW!";
+                            if (queryResult.Description != "")
+                            {
+                                ToolTip updateTooltip = new();
+                                updateTooltip.SetToolTip(btnUpdateNotif, "Download from: " + queryResult.DownloadURL + "\n\n" + queryResult.Description);
+                            }
+
+                            versionSplit = new(currentVerString.Split('.').ToList());
+                            if (versionSplit[3] == "0") versionSplit.RemoveAt(3);
+                            if (versionSplit[2] == "0") versionSplit.RemoveAt(2);
+                            currentVer.Add(string.Join(".", versionSplit));
+                            currentVer.Add(releaseDate.ToLocalTime().ToString(CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern));
+                            btnUpdateNotif.Show();
+                        }
+                    }
+                }
+                else
+                {
+                    switch (response.StatusCode)
+                    {
+                        case System.Net.HttpStatusCode.NotFound:
+                            throw new Exception("The update file was not found on the server.");
+                        case System.Net.HttpStatusCode.BadRequest:
+                            throw new Exception("");
+                        case System.Net.HttpStatusCode.InternalServerError:
+                            throw new Exception("");
+                        case System.Net.HttpStatusCode.MethodNotAllowed:
+                            throw new Exception("");
+                        case System.Net.HttpStatusCode.Forbidden:
+                            throw new Exception("");
+                    }
+                }
+            }
+            catch (HttpRequestException)
+            {
+                throw;
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err.Message);
+            }
+
+        }
+
+        public void GetUpdate()
+        {
+            if (downloadURL != "") System.Diagnostics.Process.Start(downloadURL);
+        }
+
 
         public async Task<TwitchBot> StartBot()
         {

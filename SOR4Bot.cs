@@ -624,5 +624,19 @@ namespace SOR4VSChat
             }
             return returnVal;
         }
+
+
+        public class VersionClass
+        {
+            [Newtonsoft.Json.JsonProperty("release_date")]
+            public String ReleaseDate { get; set; }
+
+            [Newtonsoft.Json.JsonProperty("version")]
+            public String Version { get; set; }
+            [Newtonsoft.Json.JsonProperty("download_url")]
+            public String DownloadURL { get; set; }
+            [Newtonsoft.Json.JsonProperty("description")]
+            public String Description { get; set; }
+        }
     }
 }
