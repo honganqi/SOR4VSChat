@@ -36,9 +36,9 @@ namespace SOR4VSChat
         string updateurl = "https://raw.githubusercontent.com/honganqi/SOR4VSChat/main/latest.json";
         string downloadURL = "";
 
-        List<string> messageList = new List<string>();
+        List<string> messageList = new();
         public panels.ChatLog chatWindow;
-        Dictionary<string, DateTime> cooldowns = new Dictionary<string, DateTime>
+        Dictionary<string, DateTime> cooldowns = new()
         {
             ["life"] = DateTime.Now,
             ["star"] = DateTime.Now,
@@ -50,7 +50,7 @@ namespace SOR4VSChat
             ["moves"] = DateTime.Now
         };
 
-        List<string> botCredentialsList = new List<string>() {
+        List<string> botCredentialsList = new() {
             "botToken",
             "botNick",
             "channelName",
@@ -69,7 +69,7 @@ namespace SOR4VSChat
             botCredentialsForm = new BotCredentialsForm(this) { TopLevel = false, TopMost = true };
             mainform = new MainForm(this) { TopLevel = false, TopMost = true };
             chatWindow = new panels.ChatLog(this);
-            SOR4VSChatLib sor4vschatlib = new SOR4VSChatLib();
+            SOR4VSChatLib sor4vschatlib = new();
             sor4vschatlib.characters = SOR4Bot.characters;
 
             panelLeft.BackColor = Color.FromArgb(33, 33, 33);
@@ -83,67 +83,67 @@ namespace SOR4VSChat
             labelVerNum.Text = "v" + string.Join(".", currentVersionSplit) + " by honganqi";
 
             Stream thumbStream = imageAssembly.GetManifestResourceStream("SOR4VSChat.img.bmc.png");
-            Bitmap thumbBitmap = new Bitmap(thumbStream);
+            Bitmap thumbBitmap = new(thumbStream);
             imgBMCSupport.Image = thumbBitmap;
 
             thumbStream = imageAssembly.GetManifestResourceStream("SOR4VSChat.img.sflogo.png");
-            thumbBitmap = new Bitmap(thumbStream);
+            thumbBitmap = new(thumbStream);
             imgSF.Image = thumbBitmap;
 
             thumbStream = imageAssembly.GetManifestResourceStream("SOR4VSChat.img.youtube.png");
-            thumbBitmap = new Bitmap(thumbStream);
+            thumbBitmap = new(thumbStream);
             imgYoutube.Image = thumbBitmap;
 
             thumbStream = imageAssembly.GetManifestResourceStream("SOR4VSChat.img.twitch.png");
-            thumbBitmap = new Bitmap(thumbStream);
+            thumbBitmap = new(thumbStream);
             imgTwitch.Image = thumbBitmap;
 
             thumbStream = imageAssembly.GetManifestResourceStream("SOR4VSChat.img.help.png");
-            thumbBitmap = new Bitmap(thumbStream);
+            thumbBitmap = new(thumbStream);
             btnGravityPanel.BackgroundImage = thumbBitmap;
 
             thumbStream = imageAssembly.GetManifestResourceStream("SOR4VSChat.img.exit.png");
-            thumbBitmap = new Bitmap(thumbStream);
+            thumbBitmap = new(thumbStream);
             btnClose.BackgroundImage = thumbBitmap;
 
             thumbStream = imageAssembly.GetManifestResourceStream("SOR4VSChat.img.min.png");
-            thumbBitmap = new Bitmap(thumbStream);
+            thumbBitmap = new(thumbStream);
             btnMinimize.BackgroundImage = thumbBitmap;
 
             thumbStream = imageAssembly.GetManifestResourceStream("SOR4VSChat.img.settings.png");
-            thumbBitmap = new Bitmap(thumbStream);
+            thumbBitmap = new(thumbStream);
             btnBotCredentials.BackgroundImage = thumbBitmap;
 
             thumbStream = imageAssembly.GetManifestResourceStream("SOR4VSChat.img.gravity.png");
-            thumbBitmap = new Bitmap(thumbStream);
+            thumbBitmap = new(thumbStream);
             btnGravityPanel.BackgroundImage = thumbBitmap;
 
             thumbStream = imageAssembly.GetManifestResourceStream("SOR4VSChat.img.size.png");
-            thumbBitmap = new Bitmap(thumbStream);
+            thumbBitmap = new(thumbStream);
             btnSizePanel.BackgroundImage = thumbBitmap;
 
             thumbStream = imageAssembly.GetManifestResourceStream("SOR4VSChat.img.speed.png");
-            thumbBitmap = new Bitmap(thumbStream);
+            thumbBitmap = new(thumbStream);
             btnSpeedPanel.BackgroundImage = thumbBitmap;
 
             thumbStream = imageAssembly.GetManifestResourceStream("SOR4VSChat.img.lives.png");
-            thumbBitmap = new Bitmap(thumbStream);
+            thumbBitmap = new(thumbStream);
             btnLivesPanel.BackgroundImage = thumbBitmap;
 
             thumbStream = imageAssembly.GetManifestResourceStream("SOR4VSChat.img.health.png");
-            thumbBitmap = new Bitmap(thumbStream);
+            thumbBitmap = new(thumbStream);
             btnHealthPanel.BackgroundImage = thumbBitmap;
 
             thumbStream = imageAssembly.GetManifestResourceStream("SOR4VSChat.img.save.png");
-            thumbBitmap = new Bitmap(thumbStream);
+            thumbBitmap = new(thumbStream);
             mainform.btnSaveSettings.BackgroundImage = thumbBitmap;
 
             thumbStream = imageAssembly.GetManifestResourceStream("SOR4VSChat.img.settings_sm.png");
-            thumbBitmap = new Bitmap(thumbStream);
+            thumbBitmap = new(thumbStream);
             mainform.btnBotSettings.BackgroundImage = thumbBitmap;
 
             thumbStream = imageAssembly.GetManifestResourceStream("SOR4VSChat.img.character.png");
-            thumbBitmap = new Bitmap(thumbStream);
+            thumbBitmap = new(thumbStream);
             btnCharPanel.BackgroundImage = thumbBitmap;
 
             CheckUpdate(updateurl);
@@ -244,7 +244,7 @@ namespace SOR4VSChat
             string notifNowOnline = ReadSetting("notifNowOnline");
             string notifNoGameYet = ReadSetting("notifNoGameYet");
 
-            TwitchBot twitchBot = new TwitchBot(botNick, botToken);
+            TwitchBot twitchBot = new(botNick, botToken);
             twitchBot.Start(this).SafeFireAndForget();
             //We could .SafeFireAndForget() these two calls if we want to
             await twitchBot.JoinChannel(channelName);
@@ -254,6 +254,7 @@ namespace SOR4VSChat
             messageList.Add("[" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "] Bot is now online");
             if (messageList.Count() > 3000) messageList.Remove(messageList[0]);
             chatWindow.txtChatLog.Text = string.Join(Environment.NewLine, messageList);
+            SOR4Bot sor4bot = new();
 
 
             twitchBot.OnMessage += async (sender, twitchChatMessage) =>
@@ -264,7 +265,6 @@ namespace SOR4VSChat
                 if (tryCommand.StartsWith("!"))
                 {
                     commandpair = CheckCommandIfExistAndEnabled(tryCommand);
-                    SOR4Bot sor4bot = new SOR4Bot();
                     Dictionary<string, Dictionary<int, int>> gameValues = sor4bot.CheckValues();
                     if (gameValues.Count > 0)
                     {
@@ -401,7 +401,7 @@ namespace SOR4VSChat
             string notifNoGameYet = ReadSetting("notifNoGameYet");
             string botRepliesToFile = ReadSetting("botRepliesToFile");
 
-            Dictionary<string, string> settings = new Dictionary<string, string>
+            Dictionary<string, string> settings = new()
             {
                 ["botToken"] = botToken,
                 ["botNick"] = botNick,
@@ -461,7 +461,7 @@ namespace SOR4VSChat
                     }
                 }
 
-                List<Form> panels = new List<Form>{
+                List<Form> panels = new() {
                     mainform.panelLives, mainform.panelSpeed, mainform.panelSize, mainform.panelGravity, mainform.panelHealth, mainform.panelCharacters
                 };
 
@@ -830,7 +830,7 @@ namespace SOR4VSChat
 
         private void ClearBotReplies()
         {
-            List<string> items = new List<string>
+            List<string> items = new()
             {
                 "life",
                 /*

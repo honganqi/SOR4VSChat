@@ -10,8 +10,8 @@ namespace SOR4VSChat
 {
     public class SOR4Bot
     {
-        SOR4VSChatLib sor4vschatlib = new SOR4VSChatLib();
-        Random randomgenerator = new Random();
+        SOR4VSChatLib sor4vschatlib = new();
+        Random randomgenerator = new();
 
         public class CommandObject
         {
@@ -21,7 +21,7 @@ namespace SOR4VSChat
             public bool? Parameters { get; set; }
         }
 
-        public static Dictionary<string, CommandObject> botCommandsList = new Dictionary<string, CommandObject>()
+        public static Dictionary<string, CommandObject> botCommandsList = new()
         {
             ["lifeup"] = new CommandObject { Category = "life", ChangeValue = 1, Parameters = true, },
             ["lifedown"] = new CommandObject { Category = "life", ChangeValue = 0, Parameters = true, },
@@ -65,7 +65,7 @@ namespace SOR4VSChat
             ["char"] = new CommandObject { Category = "character", Parameters = true },
         };
 
-        public static Dictionary<int, SOR4VSChatLib.CharacterSpeed> characters = new Dictionary<int, SOR4VSChatLib.CharacterSpeed>
+        public static Dictionary<int, SOR4VSChatLib.CharacterSpeed> characters = new()
         {
             [1] = new SOR4VSChatLib.CharacterSpeed { SpeedX = 4784, SpeedY = 2818, SpeedJump = 7864 },
             [2] = new SOR4VSChatLib.CharacterSpeed { SpeedX = 4915, SpeedY = 2949, SpeedJump = 8519 },
@@ -90,7 +90,7 @@ namespace SOR4VSChat
             [15] = new SOR4VSChatLib.CharacterSpeed { SpeedX = 5242, SpeedY = 2621, SpeedJump = 6553 },
         };
 
-        private Dictionary<string, int> characterIDs = new Dictionary<string, int>
+        private Dictionary<string, int> characterIDs = new()
         {
             ["axel"] = 1,
             ["blaze"] = 2,
@@ -147,7 +147,7 @@ namespace SOR4VSChat
                                     newValue = sor4vschatlib.changechar(player_no);
                                 }
                             }
-                            else if (Int32.TryParse(commandpair[1], out int parameterValue))
+                            else if (int.TryParse(commandpair[1], out int parameterValue))
                             {
                                 // set parameter if enabled and existing
                                 if (botCommandsList[command].ChangeValue == 0) parameterValue *= -1;
@@ -349,7 +349,7 @@ namespace SOR4VSChat
         public Dictionary<string, Dictionary<int, int>> CheckValues()
         {
             int no_of_players = sor4vschatlib.CheckNumPlayers();
-            Dictionary<string, Dictionary<int, int>> returnValues = new Dictionary<string, Dictionary<int, int>>();
+            Dictionary<string, Dictionary<int, int>> returnValues = new();
             if (no_of_players > 0)
             {
                 returnValues["gravity"] = new Dictionary<int, int>();
@@ -371,7 +371,7 @@ namespace SOR4VSChat
             return returnValues;
         }
 
-        static Dictionary<int, Dictionary<string, int>> coinside_repeats = new Dictionary<int, Dictionary<string, int>>
+        static Dictionary<int, Dictionary<string, int>> coinside_repeats = new()
         {
             [1] = new Dictionary<string, int> 
             {

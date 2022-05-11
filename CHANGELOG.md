@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in
 this file.
 
+## 1.4 - 2022/05/11 20:46:19 GMT+08:00
+### Fixed
+* Took the bot out of a programming loop which may fix random
+crashes
+
 ## 1.3 - 2022/04/04 01:52 GMT+08:00
 ### Added
 * Added a button which appears if an update is available.
